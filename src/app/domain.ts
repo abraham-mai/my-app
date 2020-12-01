@@ -32,7 +32,7 @@ export interface GetEntriesResponse {
 export interface TimeEntry {
   id: string;
   activityId: string;
-  durationId: Duration;
+  duration: Duration;
   note: Note;
 }
 

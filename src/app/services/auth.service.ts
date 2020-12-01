@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {QueryService} from './query.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, ReplaySubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public ACCESS_TOKEN = new BehaviorSubject<string>('');
+  private ACCESS_TOKEN = '';
+  public tokenIsReady = new ReplaySubject();
 
   constructor(private queryService: QueryService) {
   }
@@ -18,11 +19,12 @@ export class AuthService {
   }
 
   public get accessToken(): string {
-    return this.ACCESS_TOKEN.value;
+    return this.ACCESS_TOKEN;
   }
 
   public set accessToken(newToken: string) {
-    this.ACCESS_TOKEN.next(newToken);
+    this.ACCESS_TOKEN = newToken;
+    this.tokenIsReady.next();
   }
 
 }

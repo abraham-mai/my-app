@@ -1,1 +1,7 @@
-<p>main works!</p>
+<div class="d-flex flex-column w-100 h-100 align items align-items-center justify-content-center">
+  <input type="number" [(ngModel)]="chosenMonth">
+  <textarea>{{this.activities | json}}</textarea>
+  <textarea>{{this.entries | json}}</textarea>
+  <button (click)="getData()">GetData</button>
+
+</div>
