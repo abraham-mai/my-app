@@ -1,9 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ContentService} from '../../services/content.service';
-import {GetActivitiesResponse, GetEntriesResponse} from '../../domain';
+import {GetActivitiesResponse} from '../../domain';
 import {forkJoin} from 'rxjs';
 import {QueryService} from '../../services/query.service';
 import {AuthService} from '../../services/auth.service';
+
+export interface JetDataArrayElement {
+  date: string;
+  text: string;
+  category: string;
+  duration: string;
+  note: string;
+}
 
 @Component({
   selector: 'app-main',
@@ -19,7 +27,6 @@ export class MainComponent implements OnInit {
   public status = 'Copied Entries';
 
   activityMap = new Map<string, string>();
-  private filteredEntries: any[] | undefined;
   public months = [{name: 'Jan', value: 1}, {name: 'Feb', value: 2}, {name: 'Mar', value: 3}, {name: 'Apr', value: 4},
     {name: 'May', value: 5}, {name: 'Jun', value: 6}, {name: 'Jul', value: 7}, {name: 'Aug', value: 8},
     {name: 'Sep', value: 9}, {name: 'Oct', value: 10}, {name: 'Nov', value: 11}, {name: 'Dec', value: 12}];
@@ -37,31 +44,31 @@ export class MainComponent implements OnInit {
   }
 
   getCategory(task: string | undefined): string {
-    if (task?.includes('Frontend') && !task?.includes('Gilde') || task?.includes('Configurator') || task?.includes('Ui Libary')) {
-      return 'Implementierung';
-    } else if (task?.includes('Gilde')) {
-      return 'Sonstiges';
+    if (task?.toLocaleLowerCase().includes('frontend') && !task?.includes('gilde') || task?.includes('configurator') || task?.includes('libary')) {
+      return 'implementierung';
+    } else if (task?.toLocaleLowerCase().includes('gilde')) {
+      return 'sonstiges';
     } else {
-      return 'Planung';
+      return 'planung';
     }
   }
 
 
   getText(activity: string | undefined): string {
-    if (activity?.includes('Planung')) {
+    if (activity?.toLocaleLowerCase().includes('planung')) {
       return 'VSS-400';
     } else {
-      return 'Sonstiges';
+      return 'sonstiges';
     }
   }
 
   getNote(activity: string | undefined): string {
-    if (activity?.includes('Scrum')) {
-      return '//Scrum Planung';
-    } else if (activity?.includes('Gilde') && activity?.includes('Frontend')) {
-      return '//Gilde Frontend';
-    } else if (activity?.includes('Gilde')) {
-      return '//Gilde Agile Methoden';
+    if (activity?.toLocaleLowerCase().includes('scrum')) {
+      return '//scrum planung';
+    } else if (activity?.toLocaleLowerCase().includes('gilde') && activity?.toLocaleLowerCase().includes('frontend')) {
+      return '//gilde frontend';
+    } else if (activity?.toLocaleLowerCase().includes('gilde')) {
+      return '//gilde agile methoden';
     } else {
       return '';
     }
@@ -94,27 +101,43 @@ export class MainComponent implements OnInit {
       this.activities.activities.forEach(activity => {
         this.activityMap.set(activity.id, activity.name);
       });
-      this.entries = content[1].timeEntries.filter(entry => {
-        const date = new Date(entry.duration.startedAt);
-        return (date.getMonth() === this.chosenMonth - 1) && (date.getFullYear() === this.chosenYear);
-      }).map(filteredEntry => {
-        const start = new Date(filteredEntry.duration.startedAt);
-        const end = new Date(filteredEntry.duration.stoppedAt);
-        // @ts-ignore
-        const duration = Math.round((end - start) / (1000 * 3600) * 10) / 10;
-        const hours = duration.toString() + 'h';
-        const activity = this.activityMap.get(filteredEntry.activityId);
-        return {
-          date: start.toLocaleDateString(),
-          text: filteredEntry.note.text || this.getText(activity),
-          category: this.getCategory(activity),
-          duration: hours.replace('.', ','),
-          note: this.getNote(activity),
-        };
-      }).map(element => {
-        return `${element.date} ${element.text} ${element.category} ${element.duration} ${element.note}`;
-      }).join('\n');
+      this.entries = this.mapToJetLines(this.mapData(this.filterForDate(content[1].timeEntries)));
     });
+  }
+
+  filterForDate(data: any[]): any {
+    return data.filter(entry => {
+      const date = new Date(entry.duration.startedAt);
+      return (date.getMonth() === this.chosenMonth - 1) && (date.getFullYear() === this.chosenYear);
+    });
+  }
+
+  mapData(data: any[]): JetDataArrayElement[] {
+    return data.map(filteredEntry => {
+      const start = new Date(filteredEntry.duration.startedAt);
+      const end = new Date(filteredEntry.duration.stoppedAt);
+      // @ts-ignore
+      const duration = Math.round((end - start) / (1000 * 3600) * 10) / 10;
+      const hours = duration.toString() + 'h';
+      const activity = this.activityMap.get(filteredEntry.activityId);
+      return {
+        date: start.toLocaleDateString(),
+        text: filteredEntry.note.text?.toLowerCase() || this.getText(activity),
+        category: this.getCategory(activity),
+        duration: hours.replace('.', ','),
+        note: this.getNote(activity),
+      };
+    });
+  }
+
+  lookForSameDayActivity(data: JetDataArrayElement[]): JetDataArrayElement[] {
+    return data;
+  }
+
+  mapToJetLines(data: any[]): string {
+    return data.map(element => {
+      return `${element.date} ${element.text} ${element.category} ${element.duration} ${element.note}`;
+    }).join('\n');
   }
 
   setMonth(value: number): void {
