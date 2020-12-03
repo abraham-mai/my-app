@@ -1,0 +1,1382 @@
+{
+  "timeEntries": [
+    {
+      "id": "24147001",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-09-07T10:00:00.000",
+        "stoppedAt": "2020-09-07T10:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23951610",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-09-08T10:48:47.475",
+        "stoppedAt": "2020-09-08T11:32:21.864"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24016175",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-09-09T10:29:09.886",
+        "stoppedAt": "2020-09-09T11:18:50.357"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146596",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-09-10T10:30:33.534",
+        "stoppedAt": "2020-09-10T11:00:33.534"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146886",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-09-11T10:29:00.000",
+        "stoppedAt": "2020-09-11T11:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25258558",
+      "activityId": "836081",
+      "duration": {
+        "startedAt": "2020-10-05T10:19:11.759",
+        "stoppedAt": "2020-10-05T10:49:06.272"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24079133",
+      "activityId": "836078",
+      "duration": {
+        "startedAt": "2020-09-10T11:30:33.534",
+        "stoppedAt": "2020-09-10T13:00:50.318"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25376505",
+      "activityId": "836078",
+      "duration": {
+        "startedAt": "2020-10-06T16:15:00.000",
+        "stoppedAt": "2020-10-06T17:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25438062",
+      "activityId": "836078",
+      "duration": {
+        "startedAt": "2020-10-07T16:00:00.000",
+        "stoppedAt": "2020-10-07T17:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24019209",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-09T11:18:50.696",
+        "stoppedAt": "2020-09-09T15:30:31.218"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24069786",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-10T06:30:00.000",
+        "stoppedAt": "2020-09-10T07:40:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146619",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-10T11:00:33.534",
+        "stoppedAt": "2020-09-10T11:30:33.534"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146673",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-11T06:30:00.000",
+        "stoppedAt": "2020-09-11T07:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146730",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-11T07:30:00.000",
+        "stoppedAt": "2020-09-11T09:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26056393",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-10-19T06:00:00.000",
+        "stoppedAt": "2020-10-19T07:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27530112",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-16T07:30:00.000",
+        "stoppedAt": "2020-11-16T08:25:26.725"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27801763",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-19T14:00:00.000",
+        "stoppedAt": "2020-11-19T15:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27863735",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-20T07:45:00.000",
+        "stoppedAt": "2020-11-20T10:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27940629",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-23T07:45:00.000",
+        "stoppedAt": "2020-11-23T09:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28092551",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-25T08:00:00.000",
+        "stoppedAt": "2020-11-25T09:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28218069",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-27T09:30:00.000",
+        "stoppedAt": "2020-11-27T10:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25438035",
+      "activityId": "836058",
+      "duration": {
+        "startedAt": "2020-10-07T12:00:00.000",
+        "stoppedAt": "2020-10-07T13:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154142",
+      "activityId": "836058",
+      "duration": {
+        "startedAt": "2020-11-25T13:00:00.000",
+        "stoppedAt": "2020-11-25T13:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28530350",
+      "activityId": "836058",
+      "duration": {
+        "startedAt": "2020-12-03T07:45:00.000",
+        "stoppedAt": "2020-12-03T09:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28539757",
+      "activityId": "836058",
+      "duration": {
+        "startedAt": "2020-12-03T09:00:00.000",
+        "stoppedAt": "2020-12-03T11:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146708",
+      "activityId": "836060",
+      "duration": {
+        "startedAt": "2020-09-11T07:00:00.000",
+        "stoppedAt": "2020-09-11T07:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25438027",
+      "activityId": "836060",
+      "duration": {
+        "startedAt": "2020-10-07T11:15:00.000",
+        "stoppedAt": "2020-10-07T12:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28218063",
+      "activityId": "836060",
+      "duration": {
+        "startedAt": "2020-11-27T08:00:00.000",
+        "stoppedAt": "2020-11-27T09:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28539775",
+      "activityId": "836060",
+      "duration": {
+        "startedAt": "2020-12-03T11:06:40.325",
+        "stoppedAt": "2020-12-03T12:49:36.343"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27973504",
+      "activityId": "836057",
+      "duration": {
+        "startedAt": "2020-11-23T13:41:40.975",
+        "stoppedAt": "2020-11-23T15:43:21.470"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27973520",
+      "activityId": "836057",
+      "duration": {
+        "startedAt": "2020-11-23T15:43:21.470",
+        "stoppedAt": "2020-11-23T18:32:16.585"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26056377",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-19T07:30:00.000",
+        "stoppedAt": "2020-10-19T17:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26056534",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-20T06:15:00.000",
+        "stoppedAt": "2020-10-20T16:50:00.361"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26174096",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-21T06:30:00.000",
+        "stoppedAt": "2020-10-21T16:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26222846",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-22T06:30:00.000",
+        "stoppedAt": "2020-10-22T12:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26335841",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-23T06:30:00.000",
+        "stoppedAt": "2020-10-23T16:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26581864",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-26T07:00:00.000",
+        "stoppedAt": "2020-10-26T18:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26557345",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-27T07:00:00.000",
+        "stoppedAt": "2020-10-27T20:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26557359",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-28T07:30:00.000",
+        "stoppedAt": "2020-10-28T18:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27020121",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-04T08:00:00.000",
+        "stoppedAt": "2020-11-04T19:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27765448",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-05T08:00:00.000",
+        "stoppedAt": "2020-11-05T19:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27765456",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-06T08:15:00.000",
+        "stoppedAt": "2020-11-06T19:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27765415",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-18T14:15:00.000",
+        "stoppedAt": "2020-11-18T18:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27765480",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-19T07:47:58.988",
+        "stoppedAt": "2020-11-19T11:01:07.266"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27801738",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-19T11:30:00.000",
+        "stoppedAt": "2020-11-19T14:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27863745",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-20T10:45:00.000",
+        "stoppedAt": "2020-11-20T13:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28092506",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-24T15:45:00.000",
+        "stoppedAt": "2020-11-24T18:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154129",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-25T12:15:00.000",
+        "stoppedAt": "2020-11-25T13:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154110",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-25T13:45:00.000",
+        "stoppedAt": "2020-11-25T16:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154161",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-25T17:00:00.000",
+        "stoppedAt": "2020-11-25T18:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154178",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-26T08:00:00.000",
+        "stoppedAt": "2020-11-26T08:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28154180",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-26T08:47:31.469",
+        "stoppedAt": "2020-11-26T10:58:46.168"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28218083",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-27T10:30:00.000",
+        "stoppedAt": "2020-11-27T11:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28275481",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-27T11:38:52.655",
+        "stoppedAt": "2020-11-27T16:30:52.655"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146979",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-07T06:30:00.000",
+        "stoppedAt": "2020-09-07T10:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24147020",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-07T10:30:00.000",
+        "stoppedAt": "2020-09-07T15:30:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23954231",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-08T11:32:21.995",
+        "stoppedAt": "2020-09-08T11:50:00.847"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24069697",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-10T07:40:21.983",
+        "stoppedAt": "2020-09-10T10:30:33.534"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146640",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-10T13:00:50.318",
+        "stoppedAt": "2020-09-10T15:30:50.318"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24146903",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-11T09:00:00.000",
+        "stoppedAt": "2020-09-11T10:29:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25096325",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-01T06:30:00.000",
+        "stoppedAt": "2020-10-01T10:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25245733",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-05T06:45:00.000",
+        "stoppedAt": "2020-10-05T07:34:54.333"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25260360",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-05T10:49:08.308",
+        "stoppedAt": "2020-10-05T17:15:11.650"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25320482",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-06T07:00:14.626",
+        "stoppedAt": "2020-10-06T10:00:09.166"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25376381",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-06T11:00:00.000",
+        "stoppedAt": "2020-10-06T16:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25390693",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-07T06:48:59.855",
+        "stoppedAt": "2020-10-07T10:00:27.106"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25438015",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-07T10:30:27.106",
+        "stoppedAt": "2020-10-07T11:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25438044",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-07T13:00:00.000",
+        "stoppedAt": "2020-10-07T16:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27546078",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-16T11:30:00.000",
+        "stoppedAt": "2020-11-16T11:47:36.515"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27546087",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-16T11:47:36.515",
+        "stoppedAt": "2020-11-16T17:49:58.478"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27640538",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-17T07:45:00.000",
+        "stoppedAt": "2020-11-17T14:00:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27640554",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-17T14:06:04.097",
+        "stoppedAt": "2020-11-17T17:01:44.661"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27765410",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-18T07:45:00.000",
+        "stoppedAt": "2020-11-18T14:15:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28092485",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-24T08:00:00.000",
+        "stoppedAt": "2020-11-24T13:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28092627",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-11-25T09:30:00.000",
+        "stoppedAt": "2020-11-25T11:45:00.000"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28550589",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-12-03T13:32:07.047",
+        "stoppedAt": "2020-12-03T15:09:33.012"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28561814",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-12-03T15:09:33.012",
+        "stoppedAt": "2020-12-03T15:18:05.832"
+      },
+      "note": {
+        "text": null,
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23955315",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-08T11:50:03.784",
+        "stoppedAt": "2020-09-08T13:01:46.383"
+      },
+      "note": {
+        "text": "Retroperspektive: Team Tyr",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24014136",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-09-09T09:46:23.703",
+        "stoppedAt": "2020-09-09T10:29:07.663"
+      },
+      "note": {
+        "text": "Retro Vorbereitungen",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27530122",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-16T08:25:26.725",
+        "stoppedAt": "2020-11-16T11:00:00.000"
+      },
+      "note": {
+        "text": "# Review Planning",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27801767",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-19T15:01:25.558",
+        "stoppedAt": "2020-11-19T15:42:59.897"
+      },
+      "note": {
+        "text": "Retro Planung",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27805860",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-19T15:43:04.230",
+        "stoppedAt": "2020-11-19T17:49:40.898"
+      },
+      "note": {
+        "text": "Retro Planung",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "27940640",
+      "activityId": "836075",
+      "duration": {
+        "startedAt": "2020-11-23T09:16:59.788",
+        "stoppedAt": "2020-11-23T13:41:40.975"
+      },
+      "note": {
+        "text": "retro",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28467377",
+      "activityId": "836058",
+      "duration": {
+        "startedAt": "2020-12-02T13:00:16.036",
+        "stoppedAt": "2020-12-02T14:10:00.088"
+      },
+      "note": {
+        "text": "Sonstiges",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23663749",
+      "activityId": "835888",
+      "duration": {
+        "startedAt": "2020-09-01T12:41:53.056",
+        "stoppedAt": "2020-09-01T13:41:53.056"
+      },
+      "note": {
+        "text": "Getting to know the Timeular app.",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28459805",
+      "activityId": "836060",
+      "duration": {
+        "startedAt": "2020-12-02T11:17:40.708",
+        "stoppedAt": "2020-12-02T12:13:44.349"
+      },
+      "note": {
+        "text": "Sonstiges",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25133602",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-10-01T14:00:00.000",
+        "stoppedAt": "2020-10-01T15:45:00.000"
+      },
+      "note": {
+        "text": "Testing",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26735024",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-02T07:31:24.479",
+        "stoppedAt": "2020-11-02T09:00:00.000"
+      },
+      "note": {
+        "text": "VSS-1183",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26757093",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-02T09:00:00.000",
+        "stoppedAt": "2020-11-02T11:00:00.000"
+      },
+      "note": {
+        "text": "VSS-1026",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26796942",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-02T11:30:00.000",
+        "stoppedAt": "2020-11-02T19:30:00.000"
+      },
+      "note": {
+        "text": "VSS-1026 / Configurator",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "26817618",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-11-03T07:35:31.799",
+        "stoppedAt": "2020-11-03T17:44:30.999"
+      },
+      "note": {
+        "text": "VSS-1169",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28361930",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-01T08:02:43.260",
+        "stoppedAt": "2020-12-01T14:00:00.000"
+      },
+      "note": {
+        "text": "VSS-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28394207",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-01T14:33:16.950",
+        "stoppedAt": "2020-12-01T17:25:19.443"
+      },
+      "note": {
+        "text": "VSS-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28442814",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-02T07:35:58.246",
+        "stoppedAt": "2020-12-02T11:17:25.843"
+      },
+      "note": {
+        "text": "VSS-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28463898",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-02T12:17:04.109",
+        "stoppedAt": "2020-12-02T13:00:14.711"
+      },
+      "note": {
+        "text": "VSS-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28474350",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-02T14:10:01.661",
+        "stoppedAt": "2020-12-02T18:41:02.819"
+      },
+      "note": {
+        "text": "vss-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28548490",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-03T12:49:36.343",
+        "stoppedAt": "2020-12-03T13:30:28.361"
+      },
+      "note": {
+        "text": "vss-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28561801",
+      "activityId": "836056",
+      "duration": {
+        "startedAt": "2020-12-03T15:18:05.832",
+        "stoppedAt": "2020-12-03T16:12:41.573"
+      },
+      "note": {
+        "text": "vss-1381",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23936536",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-08T06:28:16.465",
+        "stoppedAt": "2020-09-08T09:03:14.907"
+      },
+      "note": {
+        "text": "VSS-586",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23945952",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-08T09:03:42.220",
+        "stoppedAt": "2020-09-08T10:48:47.208"
+      },
+      "note": {
+        "text": "VSS-586",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "23960605",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-08T13:01:51.470",
+        "stoppedAt": "2020-09-08T17:09:17.210"
+      },
+      "note": {
+        "text": "vss-957",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24001947",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-09T06:18:26.153",
+        "stoppedAt": "2020-09-09T08:00:08.617"
+      },
+      "note": {
+        "text": "vss-957 lasting selection",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "24008073",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-09-09T08:00:09.338",
+        "stoppedAt": "2020-09-09T09:45:50.622"
+      },
+      "note": {
+        "text": "vss-1014",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25133578",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-01T11:15:00.000",
+        "stoppedAt": "2020-10-01T14:00:00.000"
+      },
+      "note": {
+        "text": "Content Fixes",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "25247065",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-10-05T07:34:55.156",
+        "stoppedAt": "2020-10-05T10:19:11.398"
+      },
+      "note": {
+        "text": "Content Debugging Jan",
+        "tags": [],
+        "mentions": []
+      }
+    },
+    {
+      "id": "28550413",
+      "activityId": "836055",
+      "duration": {
+        "startedAt": "2020-12-03T13:30:34.492",
+        "stoppedAt": "2020-12-03T13:31:57.296"
+      },
+      "note": {
+        "text": "VSS-1135",
+        "tags": [],
+        "mentions": []
+      }
+    }
+  ]
+}

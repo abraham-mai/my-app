@@ -11,6 +11,8 @@ export interface JetDataArrayElement {
   category: string;
   duration: string;
   note: string;
+  id: string;
+  activity?: string;
 }
 
 @Component({
@@ -44,10 +46,12 @@ export class MainComponent implements OnInit {
   }
 
   getCategory(task: string | undefined): string {
-    if (task?.toLocaleLowerCase().includes('frontend') && !task?.includes('gilde') || task?.includes('configurator') || task?.includes('libary')) {
+    task = task?.toLocaleLowerCase();
+    if (task?.includes('frontend') && !task?.includes('gilde') || task?.includes('configurator') || task?.includes('libary')) {
+      console.log(task);
       return 'implementierung';
-    } else if (task?.toLocaleLowerCase().includes('gilde')) {
-      return 'sonstiges';
+    } else if (task?.includes('gilde')) {
+      return '';
     } else {
       return 'planung';
     }
@@ -63,12 +67,17 @@ export class MainComponent implements OnInit {
   }
 
   getNote(activity: string | undefined): string {
-    if (activity?.toLocaleLowerCase().includes('scrum')) {
+    activity = activity?.toLocaleLowerCase();
+    if (activity?.includes('scrum')) {
       return '//scrum planung';
-    } else if (activity?.toLocaleLowerCase().includes('gilde') && activity?.toLocaleLowerCase().includes('frontend')) {
+    } else if (activity?.includes('gilde') && activity?.includes('frontend')) {
       return '//gilde frontend';
-    } else if (activity?.toLocaleLowerCase().includes('gilde')) {
+    } else if (activity?.includes('gilde')) {
       return '//gilde agile methoden';
+    } else if (activity?.includes('configurator')) {
+      return '//configurator';
+    } else if (activity?.includes('frontend')) {
+      return '//frontend-main';
     } else {
       return '';
     }
@@ -101,7 +110,7 @@ export class MainComponent implements OnInit {
       this.activities.activities.forEach(activity => {
         this.activityMap.set(activity.id, activity.name);
       });
-      this.entries = this.mapToJetLines(this.mapData(this.filterForDate(content[1].timeEntries)));
+      this.entries = this.mapToJetLines(this.lookForSameDayActivity(this.mapData(this.filterForDate(content[1].timeEntries))));
     });
   }
 
@@ -113,31 +122,58 @@ export class MainComponent implements OnInit {
   }
 
   mapData(data: any[]): JetDataArrayElement[] {
-    return data.map(filteredEntry => {
+    return data.map((filteredEntry) => {
       const start = new Date(filteredEntry.duration.startedAt);
       const end = new Date(filteredEntry.duration.stoppedAt);
       // @ts-ignore
-      const duration = Math.round((end - start) / (1000 * 3600) * 10) / 10;
-      const hours = duration.toString() + 'h';
+      const duration = (end - start) / (1000 * 3600);
+      const hours = duration.toString();
       const activity = this.activityMap.get(filteredEntry.activityId);
+      const date = start.toLocaleDateString();
       return {
-        date: start.toLocaleDateString(),
+        date: date.toString(),
         text: filteredEntry.note.text?.toLowerCase() || this.getText(activity),
         category: this.getCategory(activity),
-        duration: hours.replace('.', ','),
+        duration: hours,
         note: this.getNote(activity),
+        id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activity),
+        activity
       };
     });
   }
 
   lookForSameDayActivity(data: JetDataArrayElement[]): JetDataArrayElement[] {
-    return data;
+    let newData = {};
+    const filteredData: JetDataArrayElement[] = [];
+    newData = data.reduce((c, i) => {
+      // @ts-ignore
+      c[i.id] = (c[i.id] || 0) + parseFloat(i.duration);
+      return c;
+    }, {});
+    Object.keys(newData).forEach(key => {
+      data.find(element => {
+        if (element.id === key) {
+          const newElement = element;
+          // @ts-ignore
+          newElement.duration = newData[key];
+          if (!filteredData.find(x => x.id === newElement.id)) {
+            filteredData.push(newElement);
+          }
+        }
+      });
+    });
+    return filteredData;
   }
 
-  mapToJetLines(data: any[]): string {
+  mapToJetLines(data: JetDataArrayElement[]): string {
+    // @ts-ignore
     return data.map(element => {
-      return `${element.date} ${element.text} ${element.category} ${element.duration} ${element.note}`;
-    }).join('\n');
+      if (Number(element.duration) > 0.2) {
+        return `${element.date} ${element.text} ${element.category} ${Number(element.duration).toFixed(1).toString().replace('.', ',')}h ${element.note}`;
+      } else {
+        return false;
+      }
+    }).filter((x => x !== false)).sort().join('\n');
   }
 
   setMonth(value: number): void {
