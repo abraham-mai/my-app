@@ -4,6 +4,10 @@ import {GetActivitiesResponse} from '../../domain';
 import {forkJoin} from 'rxjs';
 import {QueryService} from '../../services/query.service';
 import {AuthService} from '../../services/auth.service';
+import {months} from './main-assets';
+import {SnackbarService} from '../../services/snackbar.service';
+import {LoginStates} from '../../enums';
+import {Router} from '@angular/router';
 
 export interface JetDataArrayElement {
   date: string;
@@ -29,11 +33,10 @@ export class MainComponent implements OnInit {
   public status = 'Copied Entries';
 
   activityMap = new Map<string, string>();
-  public months = [{name: 'Jan', value: 1}, {name: 'Feb', value: 2}, {name: 'Mar', value: 3}, {name: 'Apr', value: 4},
-    {name: 'May', value: 5}, {name: 'Jun', value: 6}, {name: 'Jul', value: 7}, {name: 'Aug', value: 8},
-    {name: 'Sep', value: 9}, {name: 'Oct', value: 10}, {name: 'Nov', value: 11}, {name: 'Dec', value: 12}];
+  public months = months;
 
-  constructor(private contentService: ContentService, private queryService: QueryService, private authService: AuthService) {
+  constructor(private contentService: ContentService, private queryService: QueryService, private authService: AuthService,
+              private snackbarService: SnackbarService, private router: Router) {
     const currentDate = new Date();
     this.chosenMonth = currentDate.getMonth() + 1;
     this.chosenYear = currentDate.getFullYear();
@@ -42,6 +45,11 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.authService.tokenIsReady.subscribe(() => {
       this.getData();
+    });
+    this.authService.loginStatus.subscribe(status => {
+      if (status !== LoginStates.loggedIn) {
+        this.router.navigate(['login']);
+      }
     });
   }
 
@@ -96,11 +104,7 @@ export class MainComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
 
-    this.statusShown = true;
-
-    setTimeout(() => {
-      this.statusShown = false;
-    }, 2000);
+    this.snackbarService.sendNewMessage('Copied to Clipboard');
   }
 
   getData(): void {
@@ -158,5 +162,9 @@ export class MainComponent implements OnInit {
   setMonth(value: number): void {
     this.chosenMonth = value;
     this.getData();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

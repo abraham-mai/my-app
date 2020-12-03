@@ -46,3 +46,8 @@ export interface Note {
   tags: string [];
   mentions: string [];
 }
+
+export interface Credentials {
+  username: string;
+  password: string;
+}
