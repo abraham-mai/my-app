@@ -3,12 +3,12 @@
     <h1>Jet Converter</h1>
     <form [formGroup]="form">
       <mat-form-field class="w-100">
-        <mat-label>UserName</mat-label>
-        <input formControlName="username" type="email" matInput placeholder="UserName">
+        <mat-label>ApiKey</mat-label>
+        <input formControlName="apiKey" type="email" matInput placeholder="UserName">
       </mat-form-field>
       <mat-form-field class="w-100">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" type="password" matInput placeholder="UserName">
+        <mat-label>Secret</mat-label>
+        <input formControlName="apiSecret" type="password" matInput placeholder="UserName">
       </mat-form-field>
     </form>
     <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="submit()">Log In</button>

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar(matMessage: MatSnackBarMessage): void {
-    const snackBarConfig = {panelClass: [matMessage.style || ''], duration: 0} as MatSnackBarConfig;
+    const snackBarConfig = {panelClass: [matMessage.style || ''], duration: 2000} as MatSnackBarConfig;
     this.snackBar.open(matMessage.message, '', snackBarConfig
     )
     ;
