@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Credentials} from '../../domain';
 import {AuthService} from '../../services/auth.service';
-import {LoginStates} from '../../enums';
+import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
 import {SnackbarService} from '../../services/snackbar.service';
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       if (status === LoginStates.loggedIn) {
         this.router.navigate(['main']);
       } else if (status === LoginStates.wrongCredentials) {
-        this.snackbarService.sendNewMessage('Wrong credentials');
+        this.snackbarService.sendNewMessage('Wrong credentials', MatSnackbarStyle.Error);
       }
     });
     this.form = this.formBuilder.group({

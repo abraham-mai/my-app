@@ -18,3 +18,16 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: green;
+}
+
+simple-snack-bar span {
+  margin: auto;
+  text-align: center;
+}

@@ -3,8 +3,9 @@ import {AuthService} from './services/auth.service';
 import {Subscription} from 'rxjs';
 import {QueryService} from './services/query.service';
 import {ContentService} from './services/content.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {SnackbarService} from './services/snackbar.service';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {MatSnackBarMessage, SnackbarService} from './services/snackbar.service';
+import {MatSnackbarStyle} from './enums';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.triggerLogin();
     this.snackBarService.newMessage.subscribe(newMessage => {
       this.openSnackBar(newMessage);
     });
@@ -30,9 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authSub?.unsubscribe();
   }
 
-  openSnackBar(message: string): void {
-    this.snackBar.open(message, '', {
-      duration: 3000,
-    });
+  openSnackBar(matMessage: MatSnackBarMessage): void {
+    const snackBarConfig = {panelClass: [matMessage.style || ''], duration: 0} as MatSnackBarConfig;
+    this.snackBar.open(matMessage.message, '', snackBarConfig
+    )
+    ;
   }
 }

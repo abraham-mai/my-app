@@ -18,12 +18,6 @@ export class AuthService {
     this.credentials = {username: 'an.mai', password: 'test1235'};
   }
 
-  public triggerLogin(): void {
-    this.queryService.getAccessToken().subscribe(object => {
-      this.accessToken = object.token;
-    });
-  }
-
   public get accessToken(): string {
     return this.ACCESS_TOKEN;
   }
@@ -35,7 +29,10 @@ export class AuthService {
 
   public logIn(credentialsInput: Credentials): void {
     if (this.credentials.username === credentialsInput.username && this.credentials.password === credentialsInput.password) {
-      this.loginStatus.next(LoginStates.loggedIn);
+      this.queryService.getAccessToken().subscribe(object => {
+        this.accessToken = object.token;
+        this.loginStatus.next(LoginStates.loggedIn);
+      });
     } else {
       this.loginStatus.next(LoginStates.wrongCredentials);
     }
@@ -43,5 +40,6 @@ export class AuthService {
 
   public logout(): void {
     this.loginStatus.next(LoginStates.loggedOut);
+    this.accessToken = '';
   }
 }

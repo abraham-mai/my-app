@@ -43,9 +43,9 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.tokenIsReady.subscribe(() => {
+    if (this.authService.loginStatus.value === LoginStates.loggedIn) {
       this.getData();
-    });
+    }
     this.authService.loginStatus.subscribe(status => {
       if (status !== LoginStates.loggedIn) {
         this.router.navigate(['login']);
