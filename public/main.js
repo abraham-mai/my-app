@@ -354,15 +354,9 @@ class QueryService {
         this.baseUrl = 'https://api.timeular.com';
         this.api = '/api/v3';
         this.date = '2020-01-01T00:00:00.000/2030-12-31T23:59:59.999';
-        this.API_KEY = 'OTI0NjRfYmQyYzg2YWQzN2U3NGRkN2IwNWY5ZWFkMGFmMmQ2NGM=';
-        this.API_SECRET = 'OTRiN2I5ZWMzZmMxNDVhYTk1M2VhODBiYWEzYmYxYjk=';
     }
-    getAccessToken() {
-        const sendObj = {
-            apiKey: this.API_KEY,
-            apiSecret: this.API_SECRET
-        };
-        return this.http.post(`${this.baseUrl}${this.api}/developer/sign-in`, sendObj);
+    getAccessToken(credentialsInput) {
+        return this.http.post(`${this.baseUrl}${this.api}/developer/sign-in`, credentialsInput);
     }
     getActivities() {
         return this.http.get(`${this.baseUrl}${this.api}/activities`);
@@ -471,7 +465,7 @@ class AppComponent {
         (_a = this.authSub) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     }
     openSnackBar(matMessage) {
-        const snackBarConfig = { panelClass: [matMessage.style || ''], duration: 0 };
+        const snackBarConfig = { panelClass: [matMessage.style || ''], duration: 2000 };
         this.snackBar.open(matMessage.message, '', snackBarConfig);
     }
 }
@@ -533,13 +527,13 @@ function LoginComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "form", 3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "mat-form-field", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "mat-label");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "UserName");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "ApiKey");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "input", 5);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "mat-form-field", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "mat-label");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Password");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Secret");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "input", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -574,23 +568,23 @@ class LoginComponent {
             }
         });
         this.form = this.formBuilder.group({
-            username: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            apiKey: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            apiSecret: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
     }
     submit() {
         let credentialObj;
         credentialObj = {
             // @ts-ignore
-            username: this.form.get('username').value,
+            apiKey: this.form.get('apiKey').value,
             // @ts-ignore
-            password: this.form.get('password').value
+            apiSecret: this.form.get('apiSecret').value
         };
         this.authService.logIn(credentialObj);
     }
 }
 LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_snackbar_service__WEBPACK_IMPORTED_MODULE_5__["SnackbarService"])); };
-LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 2, vars: 1, consts: [["class", "d-flex flex-column justify-content-center w-100 h-100 p-5 align-items-center", 4, "ngIf"], [1, "d-flex", "flex-column", "justify-content-center", "w-100", "h-100", "p-5", "align-items-center"], [1, "d-flex", "flex-column", "align-items-center"], [3, "formGroup"], [1, "w-100"], ["formControlName", "username", "type", "email", "matInput", "", "placeholder", "UserName"], ["formControlName", "password", "type", "password", "matInput", "", "placeholder", "UserName"], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
+LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 2, vars: 1, consts: [["class", "d-flex flex-column justify-content-center w-100 h-100 p-5 align-items-center", 4, "ngIf"], [1, "d-flex", "flex-column", "justify-content-center", "w-100", "h-100", "p-5", "align-items-center"], [1, "d-flex", "flex-column", "align-items-center"], [3, "formGroup"], [1, "w-100"], ["formControlName", "apiKey", "type", "email", "matInput", "", "placeholder", "UserName"], ["formControlName", "apiSecret", "type", "password", "matInput", "", "placeholder", "UserName"], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, LoginComponent_div_0_Template, 15, 2, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, ">\n");
     } if (rf & 2) {
@@ -749,7 +743,6 @@ class AuthService {
         this.ACCESS_TOKEN = '';
         this.tokenIsReady = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"]();
         this.loginStatus = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](_enums__WEBPACK_IMPORTED_MODULE_2__["LoginStates"].loggedOut);
-        this.credentials = { username: 'an.mai', password: 'test1235' };
     }
     get accessToken() {
         return this.ACCESS_TOKEN;
@@ -759,15 +752,12 @@ class AuthService {
         this.tokenIsReady.next();
     }
     logIn(credentialsInput) {
-        if (this.credentials.username === credentialsInput.username && this.credentials.password === credentialsInput.password) {
-            this.queryService.getAccessToken().subscribe(object => {
-                this.accessToken = object.token;
-                this.loginStatus.next(_enums__WEBPACK_IMPORTED_MODULE_2__["LoginStates"].loggedIn);
-            });
-        }
-        else {
+        this.queryService.getAccessToken(credentialsInput).subscribe(object => {
+            this.accessToken = object.token;
+            this.loginStatus.next(_enums__WEBPACK_IMPORTED_MODULE_2__["LoginStates"].loggedIn);
+        }, error => {
             this.loginStatus.next(_enums__WEBPACK_IMPORTED_MODULE_2__["LoginStates"].wrongCredentials);
-        }
+        });
     }
     logout() {
         this.loginStatus.next(_enums__WEBPACK_IMPORTED_MODULE_2__["LoginStates"].loggedOut);
