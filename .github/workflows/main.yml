@@ -39,8 +39,7 @@ jobs:
   deploy:
     name: Deploy to firebase
     runs-on: ubuntu-latest
-    # only run if build job complte successfully 
-    needs: [build]
+    needs: build
     steps:
       # building the app before deploy
       - uses: actions/checkout@master
