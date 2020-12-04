@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: green;
+}
+
+simple-snack-bar span {
+  margin: auto;
+  text-align: center;
+}

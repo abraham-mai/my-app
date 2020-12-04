@@ -1,0 +1,16 @@
+<div *ngIf="form" class="d-flex flex-column justify-content-center w-100 h-100 p-5 align-items-center">
+  <div class="d-flex flex-column align-items-center">
+    <h1>Jet Converter</h1>
+    <form [formGroup]="form">
+      <mat-form-field class="w-100">
+        <mat-label>UserName</mat-label>
+        <input formControlName="username" type="email" matInput placeholder="UserName">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput placeholder="UserName">
+      </mat-form-field>
+    </form>
+    <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="submit()">Log In</button>
+  </div>
+</div>>
