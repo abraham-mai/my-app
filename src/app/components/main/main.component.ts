@@ -146,7 +146,25 @@ export class MainComponent implements OnInit {
   }
 
   lookForSameDayActivity(data: JetDataArrayElement[]): JetDataArrayElement[] {
-    return data;
+    let newData = {};
+    const filteredData: JetDataArrayElement[] = [];
+    newData = data.reduce((c: any, i) => {
+      c[i.id] = (c[i.id] || 0) + parseFloat(i.duration);
+      return c;
+    }, {});
+    Object.keys(newData).forEach(key => {
+      data.find(element => {
+        if (element.id === key) {
+          const newElement = element;
+          // @ts-ignore
+          newElement.duration = newData[key];
+          if (!filteredData.find(x => x.id === newElement.id)) {
+            filteredData.push(newElement);
+          }
+        }
+      });
+    });
+    return filteredData;
   }
 
   mapToJetLines(data: any[]): string {
