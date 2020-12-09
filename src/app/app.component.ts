@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {Subscription} from 'rxjs';
 import {QueryService} from './services/query.service';
@@ -17,12 +17,15 @@ export class AppComponent implements OnInit, OnDestroy {
   private authSub: Subscription | undefined;
 
   constructor(private authService: AuthService, private queryService: QueryService,
-              private contentService: ContentService, private snackBar: MatSnackBar, private snackBarService: SnackbarService) {
+              private contentService: ContentService, private snackBar: MatSnackBar, private snackBarService: SnackbarService,
+              private zone: NgZone,
+  ) {
   }
 
   ngOnInit(): void {
     this.snackBarService.newMessage.subscribe(newMessage => {
       this.openSnackBar(newMessage);
+      console.log(newMessage);
     });
   }
 
@@ -31,9 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar(matMessage: MatSnackBarMessage): void {
-    const snackBarConfig = {panelClass: [matMessage.style || ''], duration: 2000} as MatSnackBarConfig;
-    this.snackBar.open(matMessage.message, '', snackBarConfig
-    )
-    ;
+    const snackBarConfig = new MatSnackBarConfig();
+    snackBarConfig.panelClass = [matMessage.style || ''];
+    snackBarConfig.duration = 2000;
+    snackBarConfig.verticalPosition = 'bottom';
+    snackBarConfig.horizontalPosition = 'center';
+    this.zone.run(() => {
+      this.snackBar.open(matMessage.message, '', snackBarConfig);
+    });
   }
 }

@@ -6,7 +6,7 @@ import {QueryService} from '../../services/query.service';
 import {AuthService} from '../../services/auth.service';
 import {months} from './main-assets';
 import {SnackbarService} from '../../services/snackbar.service';
-import {LoginStates} from '../../enums';
+import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
 
 export interface JetDataArrayElement {
@@ -57,8 +57,10 @@ export class MainComponent implements OnInit {
     task = task?.toLocaleLowerCase();
     if (task?.includes('frontend') && !task?.includes('gilde') || task?.includes('configurator') || task?.includes('libary')) {
       return 'implementierung';
-    } else if (task?.includes('gilde')) {
-      return '';
+    } else if (task?.includes('gilde: frontend')) {
+      return 'GildeFrontend';
+    } else if (task?.includes('agile methoden')) {
+      return 'GildeAgileMethoden';
     } else {
       return 'planung';
     }
@@ -66,7 +68,7 @@ export class MainComponent implements OnInit {
 
 
   getText(activity: string | undefined): string {
-    if (activity?.toLocaleLowerCase().includes('planung')) {
+    if (activity?.toLocaleLowerCase().includes('planung') || activity?.toLocaleLowerCase().includes('frontend')) {
       return 'VSS-400';
     } else {
       return 'sonstiges';
@@ -75,6 +77,7 @@ export class MainComponent implements OnInit {
 
   getNote(activity: string | undefined): string {
     activity = activity?.toLocaleLowerCase();
+    console.log(activity);
     if (activity?.includes('scrum')) {
       return '//scrum planung';
     } else if (activity?.includes('gilde') && activity?.includes('frontend')) {
@@ -92,6 +95,9 @@ export class MainComponent implements OnInit {
 
 
   copyEntries(): void {
+    if (!this.entries) {
+      return;
+    }
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -103,8 +109,7 @@ export class MainComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-
-    this.snackbarService.sendNewMessage('Copied to Clipboard');
+    this.snackbarService.sendNewMessage('Copied to Clipboard', MatSnackbarStyle.Success);
   }
 
   getData(): void {
