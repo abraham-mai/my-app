@@ -10,7 +10,7 @@ import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
 
 export interface JetDataArrayElement {
-  date: string;
+  date: Date;
   text: string;
   category: string;
   duration: string;
@@ -61,6 +61,8 @@ export class MainComponent implements OnInit {
       return 'GildeFrontend';
     } else if (task?.includes('agile methoden')) {
       return 'GildeAgileMethoden';
+    } else if (task?.includes('sonstiges')) {
+      return 'sonstiges';
     } else {
       return 'planung';
     }
@@ -68,7 +70,8 @@ export class MainComponent implements OnInit {
 
 
   getText(activity: string | undefined): string {
-    if (activity?.toLocaleLowerCase().includes('planung') || activity?.toLocaleLowerCase().includes('frontend')) {
+    if (activity?.toLocaleLowerCase().includes('planung') || activity?.toLocaleLowerCase().includes('frontend')
+      && !activity?.toLocaleLowerCase().includes('gilde')) {
       return 'VSS-400';
     } else {
       return 'sonstiges';
@@ -77,7 +80,6 @@ export class MainComponent implements OnInit {
 
   getNote(activity: string | undefined): string {
     activity = activity?.toLocaleLowerCase();
-    console.log(activity);
     if (activity?.includes('scrum')) {
       return '//scrum planung';
     } else if (activity?.includes('gilde') && activity?.includes('frontend')) {
@@ -137,13 +139,13 @@ export class MainComponent implements OnInit {
       const duration = (end - start) / (1000 * 3600);
       const hours = duration.toString();
       const activity = this.activityMap.get(filteredEntry.activityId);
-      const date = start.toLocaleDateString();
+      const date = start;
       return {
-        date: date.toString(),
-        text: filteredEntry.note.text?.toLowerCase() || this.getText(activity),
+        date,
+        text: filteredEntry.note.text?.toLowerCase().includes('vss') ? filteredEntry.note.text?.toLowerCase() : this.getText(activity),
         category: this.getCategory(activity),
         duration: hours,
-        note: this.getNote(activity),
+        note: this.getNote(activity) || `//${filteredEntry.note.text?.toLowerCase()}` || `//${this.getText(activity)}`,
         id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activity),
         activity
       };
@@ -173,13 +175,16 @@ export class MainComponent implements OnInit {
   }
 
   mapToJetLines(data: any[]): string {
-    return data.map(element => {
+    return data.sort((a, b) => {
+      // @ts-ignore
+      return (new Date(b.date) - new Date(a.date));
+    }).map(element => {
       if (Number(element.duration) > 0.2) {
-        return `${element.date} ${element.text} ${element.category} ${Number(element.duration).toFixed(1).toString().replace('.', ',')}h ${element.note}`;
+        return `${element.date.toLocaleDateString()} ${element.text} ${element.category} ${Number(element.duration).toFixed(1).toString().replace('.', ',')}h ${element.note}`;
       } else {
         return false;
       }
-    }).filter((x => x !== false)).sort().join('\n');
+    }).filter((x => x !== false)).join('\n');
   }
 
   setMonth(value: number): void {
