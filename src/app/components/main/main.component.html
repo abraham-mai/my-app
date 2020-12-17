@@ -1,15 +1,8 @@
 <div class="d-flex flex-column w-100 h-100 p-5 align-items-center">
   <button mat-raised-button color="primary" class="align-self-end" (click)="logout()">Log Out</button>
   <h1>Jet Snippet Collector</h1>
-  <div class="mt-4"><input type="number" max="2030" min="2018" [(ngModel)]="chosenYear" (change)="getData()"></div>
-
-  <div class="d-flex flex-wrap my-4 justify-content-center">
-    <div *ngFor="let month of months" class=" px-4 py-2 cursor-pointer font-weight-bold"
-         [style.borderRadius]="'3px'"
-         (click)="setMonth(month.value)"
-         [style.backgroundColor]="month.value === chosenMonth ? '#eeeeee' : 'white'">
-      {{month.name.toUpperCase()}}
-    </div>
+  <div class="my-4">
+    <calendar-bar (dateChanged) ="setDate($event)"></calendar-bar>
   </div>
   <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2">{{this.entries}}</textarea>
   <div class="flex-grow-1"></div>

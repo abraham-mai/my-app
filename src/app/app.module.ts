@@ -12,12 +12,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CalendarBarComponent } from './components/calendar-bar/calendar-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    CalendarBarComponent
   ],
   imports: [
     BrowserModule,

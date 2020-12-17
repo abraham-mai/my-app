@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ContentService} from '../../services/content.service';
 import {GetActivitiesResponse} from '../../domain';
 import {forkJoin} from 'rxjs';
 import {QueryService} from '../../services/query.service';
 import {AuthService} from '../../services/auth.service';
-import {months} from './main-assets';
 import {SnackbarService} from '../../services/snackbar.service';
 import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
+import { DateObject } from '../calendar-bar/calendar-bar.component';
 
 export interface JetDataArrayElement {
   date: Date;
@@ -33,13 +32,11 @@ export class MainComponent implements OnInit {
   public status = 'Copied Entries';
 
   activityMap = new Map<string, string>();
-  public months = months;
 
-  constructor(private contentService: ContentService, private queryService: QueryService, private authService: AuthService,
+  constructor(private queryService: QueryService, private authService: AuthService,
               private snackbarService: SnackbarService, private router: Router) {
-    const currentDate = new Date();
-    this.chosenMonth = currentDate.getMonth() + 1;
-    this.chosenYear = currentDate.getFullYear();
+                this.chosenMonth = 0;
+                this.chosenYear = 0;
   }
 
   ngOnInit(): void {
@@ -187,8 +184,9 @@ export class MainComponent implements OnInit {
     }).filter((x => x !== false)).join('\n');
   }
 
-  setMonth(value: number): void {
-    this.chosenMonth = value;
+  setDate(date: DateObject): void {
+    this.chosenMonth = date.month;
+    this.chosenYear = date.year;
     this.getData();
   }
 
