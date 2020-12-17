@@ -19,7 +19,7 @@ import { CalendarBarComponent } from './components/calendar-bar/calendar-bar.com
     AppComponent,
     MainComponent,
     LoginComponent,
-    CalendarBarComponent
+    CalendarBarComponent,
   ],
   imports: [
     BrowserModule,

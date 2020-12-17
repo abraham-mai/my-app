@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {GetActivitiesResponse} from '../../domain';
+import {GetActivitiesResponse, GetEntriesResponse} from '../../domain';
 import {forkJoin} from 'rxjs';
 import {QueryService} from '../../services/query.service';
 import {AuthService} from '../../services/auth.service';
 import {SnackbarService} from '../../services/snackbar.service';
 import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
-import { DateObject } from '../calendar-bar/calendar-bar.component';
+import { FilteringsService } from 'src/app/services/filterings.service';
 
 export interface JetDataArrayElement {
   date: Date;
@@ -24,17 +24,18 @@ export interface JetDataArrayElement {
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public activities: GetActivitiesResponse | undefined;
   public entries = '';
   public chosenMonth: number;
   public chosenYear: number;
   public statusShown = false;
   public status = 'Copied Entries';
 
+
+
   activityMap = new Map<string, string>();
 
   constructor(private queryService: QueryService, private authService: AuthService,
-              private snackbarService: SnackbarService, private router: Router) {
+              private snackbarService: SnackbarService, private router: Router, private filterService: FilteringsService) {
                 this.chosenMonth = 0;
                 this.chosenYear = 0;
   }
@@ -42,6 +43,9 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.loginStatus.value === LoginStates.loggedIn) {
       this.getData();
+      this.filterService.filteredEntries.subscribe(filteredEntries => {
+        this.entries = filteredEntries;
+      })
     }
     this.authService.loginStatus.subscribe(status => {
       if (status !== LoginStates.loggedIn) {
@@ -49,49 +53,6 @@ export class MainComponent implements OnInit {
       }
     });
   }
-
-  getCategory(task: string | undefined): string {
-    task = task?.toLocaleLowerCase();
-    if (task?.includes('frontend') && !task?.includes('gilde') || task?.includes('configurator') || task?.includes('libary')) {
-      return 'implementierung';
-    } else if (task?.includes('gilde: frontend')) {
-      return 'GildeFrontend';
-    } else if (task?.includes('agile methoden')) {
-      return 'GildeAgileMethoden';
-    } else if (task?.includes('sonstiges')) {
-      return 'sonstiges';
-    } else {
-      return 'planung';
-    }
-  }
-
-
-  getText(activity: string | undefined): string {
-    if (activity?.toLocaleLowerCase().includes('planung') || activity?.toLocaleLowerCase().includes('frontend')
-      && !activity?.toLocaleLowerCase().includes('gilde')) {
-      return 'VSS-400';
-    } else {
-      return 'sonstiges';
-    }
-  }
-
-  getNote(activity: string | undefined): string {
-    activity = activity?.toLocaleLowerCase();
-    if (activity?.includes('scrum')) {
-      return '//scrum planung';
-    } else if (activity?.includes('gilde') && activity?.includes('frontend')) {
-      return '//gilde frontend';
-    } else if (activity?.includes('gilde')) {
-      return '//gilde agile methoden';
-    } else if (activity?.includes('configurator')) {
-      return '//configurator';
-    } else if (activity?.includes('frontend')) {
-      return '//frontend-main';
-    } else {
-      return '';
-    }
-  }
-
 
   copyEntries(): void {
     if (!this.entries) {
@@ -113,81 +74,10 @@ export class MainComponent implements OnInit {
 
   getData(): void {
     forkJoin([this.queryService.getActivities(), this.queryService.getEntries()]).subscribe(content => {
-      this.activities = content[0];
-      this.activities.activities.forEach(activity => {
-        this.activityMap.set(activity.id, activity.name);
-      });
-      this.entries = this.mapToJetLines(this.lookForSameDayActivity(this.mapData(this.filterForDate(content[1].timeEntries))));
+      this.filterService.activities = content[0];
+      this.filterService.entries = content[1];
+      this.filterService.startFilterData();
     });
-  }
-
-  filterForDate(data: any[]): any {
-    return data.filter(entry => {
-      const date = new Date(entry.duration.startedAt);
-      return (date.getMonth() === this.chosenMonth - 1) && (date.getFullYear() === this.chosenYear);
-    });
-  }
-
-  mapData(data: any[]): JetDataArrayElement[] {
-    return data.map((filteredEntry) => {
-      const start = new Date(filteredEntry.duration.startedAt);
-      const end = new Date(filteredEntry.duration.stoppedAt);
-      // @ts-ignore
-      const duration = (end - start) / (1000 * 3600);
-      const hours = duration.toString();
-      const activity = this.activityMap.get(filteredEntry.activityId);
-      const date = start;
-      return {
-        date,
-        text: filteredEntry.note.text?.toLowerCase().includes('vss') ? filteredEntry.note.text?.toLowerCase() : this.getText(activity),
-        category: this.getCategory(activity),
-        duration: hours,
-        note: this.getNote(activity) || `//${filteredEntry.note.text?.toLowerCase()}` || `//${this.getText(activity)}`,
-        id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activity),
-        activity
-      };
-    });
-  }
-
-  lookForSameDayActivity(data: JetDataArrayElement[]): JetDataArrayElement[] {
-    let newData = {};
-    const filteredData: JetDataArrayElement[] = [];
-    newData = data.reduce((c: any, i) => {
-      c[i.id] = (c[i.id] || 0) + parseFloat(i.duration);
-      return c;
-    }, {});
-    Object.keys(newData).forEach(key => {
-      data.find(element => {
-        if (element.id === key) {
-          const newElement = element;
-          // @ts-ignore
-          newElement.duration = newData[key];
-          if (!filteredData.find(x => x.id === newElement.id)) {
-            filteredData.push(newElement);
-          }
-        }
-      });
-    });
-    return filteredData;
-  }
-
-  mapToJetLines(data: any[]): string {
-    return data.sort((a, b) => {
-      // @ts-ignore
-      return (new Date(b.date) - new Date(a.date));
-    }).map(element => {
-      if (Number(element.duration) > 0.2) {
-        return `${element.date.toLocaleDateString()} ${element.text} ${element.category} ${Number(element.duration).toFixed(1).toString().replace('.', ',')}h ${element.note}`;
-      } else {
-        return false;
-      }
-    }).filter((x => x !== false)).join('\n');
-  }
-
-  setDate(date: DateObject): void {
-    this.chosenMonth = date.month;
-    this.chosenYear = date.year;
-    this.getData();
   }
 
   logout(): void {

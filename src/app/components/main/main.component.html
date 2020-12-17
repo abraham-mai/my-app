@@ -2,7 +2,7 @@
   <button mat-raised-button color="primary" class="align-self-end" (click)="logout()">Log Out</button>
   <h1>Jet Snippet Collector</h1>
   <div class="my-4">
-    <calendar-bar (dateChanged) ="setDate($event)"></calendar-bar>
+    <calendar-bar></calendar-bar>
   </div>
   <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2">{{this.entries}}</textarea>
   <div class="flex-grow-1"></div>

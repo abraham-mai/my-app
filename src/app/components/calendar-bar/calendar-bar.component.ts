@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FilteringsService } from 'src/app/services/filterings.service';
 import {months} from './months';
 
 
@@ -19,8 +20,7 @@ export class CalendarBarComponent implements OnInit {
   public chosenMonth;
   public chosenYear;
 
-  @Output() dateChanged = new EventEmitter<DateObject>();
-  constructor() {
+  constructor(private filterService: FilteringsService) {
     const currentDate = new Date();
     this.chosenMonth = currentDate.getMonth() + 1;
     this.chosenYear = currentDate.getFullYear();
@@ -36,6 +36,6 @@ export class CalendarBarComponent implements OnInit {
   }
   
   emit(){
-    this.dateChanged.emit({month: this.chosenMonth, year: this.chosenYear})
+    this.filterService.date = {month: this.chosenMonth, year: this.chosenYear};
   }
 }
