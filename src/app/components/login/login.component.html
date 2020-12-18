@@ -1,17 +1,18 @@
 <script src="../main/main.component.ts"></script>
 <div *ngIf="form" class="d-flex flex-column justify-content-center w-100 h-100 p-5 align-items-center">
-  <div class="d-flex flex-column align-items-center">
-    <h1>Jet Converter</h1>
+  <div class="d-flex flex-column align-items-center login-card">
+    <div class="mt-4 mb-5 heading">Jet Simplifier</div>
     <form [formGroup]="form">
       <mat-form-field class="w-100">
         <mat-label>ApiKey</mat-label>
-        <input formControlName="apiKey" type="email" matInput placeholder="UserName">
+        <input formControlName="apiKey" type="email" matInput placeholder="UserName" />
       </mat-form-field>
       <mat-form-field class="w-100">
         <mat-label>Secret</mat-label>
-        <input formControlName="apiSecret" type="password" matInput placeholder="UserName">
+        <input formControlName="apiSecret" type="password" matInput placeholder="UserName" />
       </mat-form-field>
     </form>
-    <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="submit()">Log In</button>
+    <button class="mt-4" [disabled]="!form.valid" mat-raised-button color="primary" (click)="submit()">Log In</button>
   </div>
-</div>>
+</div>
+>

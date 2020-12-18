@@ -1,12 +1,16 @@
-
 <div class="d-flex flex-column w-100 align-items-center">
-    <div class="my-4"><input type="number" max="2030" min="2018" [(ngModel)]="chosenYear" (change)="emit()"></div>
-<div class="d-flex flex-wrap">
-<div *ngFor="let month of months" class=" px-4 py-2 cursor-pointer font-weight-bold"
-[style.borderRadius]="'3px'"
-(click)="setMonth(month.value)"
-[style.backgroundColor]="month.value === chosenMonth ? '#eeeeee' : 'white'">
-{{month.name.toUpperCase()}}
-</div>
-</div>
+  <div class="my-4">
+    <input class="form-control" type="number" max="2030" min="2018" [(ngModel)]="chosenYear" (change)="emit()" />
+  </div>
+  <div class="d-flex flex-wrap justify-content-center">
+    <button
+      *ngFor="let month of months"
+      class="m-1 cursor-pointer font-weight-bold mat-raised-button"
+      [style.borderRadius]="'3px'"
+      (click)="setMonth(month.value)"
+      [class.mat-primary]="month.value === chosenMonth"
+    >
+      {{ month.name.toUpperCase() }}
+    </button>
+  </div>
 </div>

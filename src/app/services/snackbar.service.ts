@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ReplaySubject} from 'rxjs';
-import {MatSnackbarStyle} from '../enums';
+import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import { MatSnackbarStyle } from '../enums';
 
 export interface MatSnackBarMessage {
   message: string;
@@ -8,16 +8,15 @@ export interface MatSnackBarMessage {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class SnackbarService {
   public newMessage = new ReplaySubject<MatSnackBarMessage>();
 
-  constructor() {
-  }
+  constructor() {}
 
   public sendNewMessage(message: string, style?: MatSnackbarStyle): void {
-    this.newMessage.next({message, style});
+    console.log(message);
+    this.newMessage.next({ message, style });
   }
 }

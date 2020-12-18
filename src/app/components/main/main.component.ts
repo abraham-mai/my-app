@@ -1,11 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {GetActivitiesResponse, GetEntriesResponse} from '../../domain';
-import {forkJoin} from 'rxjs';
-import {QueryService} from '../../services/query.service';
-import {AuthService} from '../../services/auth.service';
-import {SnackbarService} from '../../services/snackbar.service';
-import {LoginStates, MatSnackbarStyle} from '../../enums';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { SnackbarService } from '../../services/snackbar.service';
+import { LoginStates, MatSnackbarStyle } from '../../enums';
+import { Router } from '@angular/router';
 import { FilteringsService } from 'src/app/services/filterings.service';
 
 export interface JetDataArrayElement {
@@ -21,7 +18,7 @@ export interface JetDataArrayElement {
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
   public entries = '';
@@ -30,24 +27,25 @@ export class MainComponent implements OnInit {
   public statusShown = false;
   public status = 'Copied Entries';
 
-
-
   activityMap = new Map<string, string>();
 
-  constructor(private queryService: QueryService, private authService: AuthService,
-              private snackbarService: SnackbarService, private router: Router, private filterService: FilteringsService) {
-                this.chosenMonth = 0;
-                this.chosenYear = 0;
+  constructor(
+    private authService: AuthService,
+    private snackbarService: SnackbarService,
+    private router: Router,
+    private filterService: FilteringsService
+  ) {
+    this.chosenMonth = 0;
+    this.chosenYear = 0;
   }
 
   ngOnInit(): void {
     if (this.authService.loginStatus.value === LoginStates.loggedIn) {
-      this.getData();
-      this.filterService.filteredEntries.subscribe(filteredEntries => {
+      this.filterService.filteredEntries.subscribe((filteredEntries) => {
         this.entries = filteredEntries;
-      })
+      });
     }
-    this.authService.loginStatus.subscribe(status => {
+    this.authService.loginStatus.subscribe((status) => {
       if (status !== LoginStates.loggedIn) {
         this.router.navigate(['login']);
       }
@@ -60,9 +58,7 @@ export class MainComponent implements OnInit {
     }
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
+    selBox.style.left = selBox.style.top = selBox.style.opacity = '0';
     selBox.value = this.entries;
     document.body.appendChild(selBox);
     selBox.focus();
@@ -70,14 +66,6 @@ export class MainComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
     this.snackbarService.sendNewMessage('Copied to Clipboard', MatSnackbarStyle.Success);
-  }
-
-  getData(): void {
-    forkJoin([this.queryService.getActivities(), this.queryService.getEntries()]).subscribe(content => {
-      this.filterService.activities = content[0];
-      this.filterService.entries = content[1];
-      this.filterService.startFilterData();
-    });
   }
 
   logout(): void {
