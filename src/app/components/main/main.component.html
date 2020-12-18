@@ -1,11 +1,20 @@
-<div class="d-flex flex-column w-100 h-100 p-5 align-items-center">
-  <button mat-raised-button color="primary" class="align-self-end" (click)="logout()">Log Out</button>
-  <h1>Jet Snippet Collector</h1>
-  <div class="my-4">
-    <calendar-bar></calendar-bar>
+<div class="d-flex flex-column w-100 h-100 p-4 align-items-center">
+  <div class="d-flex flex-wrap w-100 justify-content-around">
+    <div class="top-field"></div>
+    <div class="heading main mt-5 top-field d-flex justify-content-center" style="text-align: center">
+      Jet Simplifier
+    </div>
+    <div class="top-field d-flex justify-content-end align-items-start">
+      <button mat-raised-button color="primary" (click)="logout()">Log Out</button>
+    </div>
   </div>
-  <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2">{{this.entries}}</textarea>
-  <div class="flex-grow-1"></div>
+  <div class="mb-4">
+    <calendar-bar></calendar-bar>
+    <div class="d-flex justify-content-center mt-4">
+      <refetch></refetch>
+    </div>
+  </div>
+  <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2 form-control entry-field">{{
+    this.entries || 'No entries'
+  }}</textarea>
 </div>
-
-

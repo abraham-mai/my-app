@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CalendarBarComponent } from './components/calendar-bar/calendar-bar.component';
+import { RefetchComponent } from './components/main/refetch/refetch.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CalendarBarComponent } from './components/calendar-bar/calendar-bar.com
     MainComponent,
     LoginComponent,
     CalendarBarComponent,
+    RefetchComponent,
   ],
   imports: [
     BrowserModule,

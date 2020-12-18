@@ -1,10 +1,10 @@
 export enum LoginStates {
   loggedIn,
   loggedOut,
-  wrongCredentials
+  wrongCredentials,
 }
 
 export enum MatSnackbarStyle {
   Error = 'error',
-  Success = 'success'
+  Success = 'success',
 }
