@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Credentials} from '../../domain';
 import {AuthService} from '../../services/auth.service';
 import {LoginStates, MatSnackbarStyle} from '../../enums';
 import {Router} from '@angular/router';
 import {SnackbarService} from '../../services/snackbar.service';
+import {GetAccessTokenRequest} from '../../domain';
 
 @Component({
   selector: 'app-login',
@@ -27,20 +27,20 @@ export class LoginComponent implements OnInit {
       }
     });
     this.form = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+        apiKey: ['', Validators.required],
+        apiSecret: ['', Validators.required]
       }
     )
     ;
   }
 
   submit(): void {
-    let credentialObj: Credentials;
+    let credentialObj: GetAccessTokenRequest;
     credentialObj = {
       // @ts-ignore
-      username: this.form.get('username').value,
+      apiKey: this.form.get('apiKey').value,
       // @ts-ignore
-      password: this.form.get('password').value
+      apiSecret: this.form.get('apiSecret').value
     };
     this.authService.logIn(credentialObj);
   }

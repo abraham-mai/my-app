@@ -1,22 +1,37 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+  font-family: 'krinkesRegular';
+  src: url(./assets/fonts/KrinkesRegularPERSONAL.ttf);
+}
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
 
+body {
+  background: #16a085; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f4d03f, #16a085); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f4d03f,
+    #16a085
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
 .cursor-pointer {
   cursor: pointer;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .error {
@@ -24,10 +39,16 @@ body {
 }
 
 .success {
-  background-color: green;
+  background-color: #3f51b5;
 }
 
 simple-snack-bar span {
   margin: auto;
   text-align: center;
+}
+
+.heading {
+  font-size: 3rem;
+  line-height: 3rem;
+  font-family: 'krinkesRegular';
 }

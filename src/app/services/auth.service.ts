@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {QueryService} from './query.service';
 import {BehaviorSubject, ReplaySubject} from 'rxjs';
-import {Credentials} from '../domain';
+import {Credentials, GetAccessTokenRequest} from '../domain';
 import {LoginStates} from '../enums';
 
 @Injectable({
@@ -11,11 +11,9 @@ import {LoginStates} from '../enums';
 export class AuthService {
   private ACCESS_TOKEN = '';
   public tokenIsReady = new ReplaySubject();
-  private credentials: Credentials;
   public loginStatus = new BehaviorSubject<LoginStates>(LoginStates.loggedOut);
 
   constructor(private queryService: QueryService) {
-    this.credentials = {username: 'an.mai', password: 'test1235'};
   }
 
   public get accessToken(): string {
@@ -27,15 +25,14 @@ export class AuthService {
     this.tokenIsReady.next();
   }
 
-  public logIn(credentialsInput: Credentials): void {
-    if (this.credentials.username === credentialsInput.username && this.credentials.password === credentialsInput.password) {
-      this.queryService.getAccessToken().subscribe(object => {
-        this.accessToken = object.token;
-        this.loginStatus.next(LoginStates.loggedIn);
-      });
-    } else {
+  public logIn(credentialsInput: GetAccessTokenRequest): void {
+    this.queryService.getAccessToken(credentialsInput).subscribe(object => {
+      this.accessToken = object.token;
+      this.loginStatus.next(LoginStates.loggedIn);
+
+    }, error => {
       this.loginStatus.next(LoginStates.wrongCredentials);
-    }
+    });
   }
 
   public logout(): void {
