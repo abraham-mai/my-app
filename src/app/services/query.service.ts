@@ -15,9 +15,9 @@ export class QueryService {
   constructor(private http: HttpClient, private filterService: FilteringsService) {}
 
   public fetchData(): void {
-    forkJoin([this.getActivities(), this.getEntries()]).subscribe((content) => {
-      this.filterService.activities = content[0];
-      this.filterService.entries = content[1];
+    forkJoin({ activities: this.getActivities(), entries: this.getEntries() }).subscribe((content) => {
+      this.filterService.activities = content.activities;
+      this.filterService.entries = content.entries;
       this.filterService.startFilterData();
     });
   }
@@ -26,11 +26,11 @@ export class QueryService {
     return this.http.post<GetAccessTokenResponse>(`${this.baseUrl}${this.api}/developer/sign-in`, credentialsInput);
   }
 
-  private getActivities(): Observable<GetActivitiesResponse> {
+  public getActivities(): Observable<GetActivitiesResponse> {
     return this.http.get<GetActivitiesResponse>(`${this.baseUrl}${this.api}/activities`);
   }
 
-  private getEntries(): Observable<GetEntriesResponse> {
+  public getEntries(): Observable<GetEntriesResponse> {
     return this.http.get<GetEntriesResponse>(`${this.baseUrl}${this.api}/time-entries/${this.date}`);
   }
 }

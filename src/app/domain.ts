@@ -13,7 +13,6 @@ export interface GetActivitiesResponse {
   activities: Activity[];
   inactiveActivities: Activity[];
   archivedActivities: Activity[];
-
 }
 
 export interface Activity {
@@ -43,8 +42,8 @@ export interface Duration {
 
 export interface Note {
   text: string;
-  tags: string [];
-  mentions: string [];
+  tags: string[];
+  mentions: string[];
 }
 
 export interface Credentials {

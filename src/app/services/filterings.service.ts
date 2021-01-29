@@ -1,40 +1,40 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DateObject } from '../components/calendar-bar/calendar-bar.component';
+import { DateObject } from '../components/main/calendar-bar/calendar-bar.component';
 import { JetDataArrayElement } from '../components/main/main.component';
 import { GetActivitiesResponse, GetEntriesResponse } from '../domain';
 import { MappingsService } from './mappings.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilteringsService {
   private activityMap = new Map<string, string>();
-   private _date: DateObject;
-   private _activities!: GetActivitiesResponse;
-   private _entries!: GetEntriesResponse;
+  private _date: DateObject;
+  private _activities!: GetActivitiesResponse;
+  private _entries!: GetEntriesResponse;
 
-    filteredEntries = new BehaviorSubject<any>(null);
+  filteredEntries = new BehaviorSubject<any>(null);
 
   constructor(private mappingService: MappingsService) {
-    this._date = {month: 0, year: 0}
+    this._date = { month: 0, year: 0 };
   }
 
-  public startFilterData(){
+  public startFilterData() {
     this.activityMap.clear();
-    this.activities.activities.forEach(activity => {
+    this.activities.activities.forEach((activity) => {
       this.activityMap.set(activity.id, activity.name);
     });
-   
-   this.filteredEntries.next(this.mapToJetLines(this.lookForSameDayActivity(this.mapData(this.filterForDate(this.entries.timeEntries)))));
+
+    this.filteredEntries.next(
+      this.mapToJetLines(this.lookForSameDayActivity(this.mapData(this.filterForDate(this.entries.timeEntries))))
+    );
   }
 
-
-
   private filterForDate(data: any[]): any {
-    return data.filter(entry => {
+    return data.filter((entry) => {
       const date = new Date(entry.duration.startedAt);
-      return (date.getMonth() === this.date.month - 1) && (date.getFullYear() === this.date.year);
+      return date.getMonth() === this.date.month - 1 && date.getFullYear() === this.date.year;
     });
   }
 
@@ -49,12 +49,17 @@ export class FilteringsService {
       const date = start;
       return {
         date,
-        text: filteredEntry.note.text?.toLowerCase().includes('vss') ? filteredEntry.note.text?.toLowerCase() : this.mappingService.getText(activity),
+        text: filteredEntry.note.text?.toLowerCase().includes('vss')
+          ? filteredEntry.note.text?.toLowerCase()
+          : this.mappingService.getText(activity),
         category: this.mappingService.getCategory(activity),
         duration: hours,
-        note: this.mappingService.getNote(activity) || `//${filteredEntry.note.text?.toLowerCase()}` || `//${this.mappingService.getText(activity)}`,
+        note:
+          this.mappingService.getNote(activity) ||
+          `//${filteredEntry.note.text?.toLowerCase()}` ||
+          `//${this.mappingService.getText(activity)}`,
         id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activity),
-        activity
+        activity,
       };
     });
   }
@@ -66,13 +71,13 @@ export class FilteringsService {
       c[i.id] = (c[i.id] || 0) + parseFloat(i.duration);
       return c;
     }, {});
-    Object.keys(newData).forEach(key => {
-      data.find(element => {
+    Object.keys(newData).forEach((key) => {
+      data.find((element) => {
         if (element.id === key) {
           const newElement = element;
           // @ts-ignore
           newElement.duration = newData[key];
-          if (!filteredData.find(x => x.id === newElement.id)) {
+          if (!filteredData.find((x) => x.id === newElement.id)) {
             filteredData.push(newElement);
           }
         }
@@ -82,42 +87,48 @@ export class FilteringsService {
   }
 
   private mapToJetLines(data: any[]): string {
-    return data.sort((a, b) => {
-      // @ts-ignore
-      return (new Date(b.date) - new Date(a.date));
-    }).map(element => {
-      if (Number(element.duration) > 0.2) {
-        return `${element.date.toLocaleDateString()} ${element.text} ${element.category} ${Number(element.duration).toFixed(1).toString().replace('.', ',')}h ${element.note}`;
-      } else {
-        return false;
-      }
-    }).filter((x => x !== false)).join('\n');
+    return data
+      .sort((a, b) => {
+        // @ts-ignore
+        return new Date(b.date) - new Date(a.date);
+      })
+      .map((element) => {
+        if (Number(element.duration) > 0.2) {
+          return `${element.date.toLocaleDateString()} ${element.text} ${element.category} ${Number(element.duration)
+            .toFixed(1)
+            .toString()
+            .replace('.', ',')}h ${element.note}`;
+        } else {
+          return false;
+        }
+      })
+      .filter((x) => x !== false)
+      .join('\n');
   }
 
- set date(date: DateObject){
-  this._date = date;
-  if(this.entries && this.entries){
-  this.startFilterData();
-}
- }
+  set date(date: DateObject) {
+    this._date = date;
+    if (this.entries && this.entries) {
+      this.startFilterData();
+    }
+  }
 
- get date(){
-   return this._date;
- }
+  get date() {
+    return this._date;
+  }
 
- get entries(){
-   return this._entries;
- }
+  get entries() {
+    return this._entries;
+  }
 
- get activities(){
-   return this._activities;
- }
- set entries(entries: GetEntriesResponse){
-  this._entries = entries
- }
+  get activities() {
+    return this._activities;
+  }
+  set entries(entries: GetEntriesResponse) {
+    this._entries = entries;
+  }
 
- set activities(activities: GetActivitiesResponse){
-   this._activities = activities
- }
-
+  set activities(activities: GetActivitiesResponse) {
+    this._activities = activities;
+  }
 }
