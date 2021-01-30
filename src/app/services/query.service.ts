@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { GetAccessTokenRequest, GetAccessTokenResponse, GetActivitiesResponse, GetEntriesResponse } from '../domain';
+import {
+  GetAccessTokenRequest,
+  GetAccessTokenResponse,
+  GetActivitiesResponse,
+  GetEntriesResponse,
+  GetUserConfigResponse,
+} from '../domain';
 import { HttpClient } from '@angular/common/http';
 import { FilteringsService } from './filterings.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -32,5 +37,9 @@ export class QueryService {
 
   public getEntries(): Observable<GetEntriesResponse> {
     return this.http.get<GetEntriesResponse>(`${this.baseUrl}${this.api}/time-entries/${this.date}`);
+  }
+
+  public getUserConfig(): Observable<GetUserConfigResponse> {
+    return this.http.get<GetUserConfigResponse>(`../../assets/userConfig.json`);
   }
 }

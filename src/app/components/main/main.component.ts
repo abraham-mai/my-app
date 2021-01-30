@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../services/snackbar.service';
 import { LoginStates, MatSnackbarStyle } from '../../enums';
 import { Router } from '@angular/router';
 import { FilteringsService } from 'src/app/services/filterings.service';
+import { Subscription } from 'rxjs';
 
 export interface JetDataArrayElement {
   date: Date;
@@ -20,7 +21,7 @@ export interface JetDataArrayElement {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   public entries = '';
   public chosenMonth: number;
   public chosenYear: number;
@@ -28,6 +29,7 @@ export class MainComponent implements OnInit {
   public status = 'Copied Entries';
 
   activityMap = new Map<string, string>();
+  private _authSub: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
@@ -38,18 +40,20 @@ export class MainComponent implements OnInit {
     this.chosenMonth = 0;
     this.chosenYear = 0;
   }
-
   ngOnInit(): void {
     if (this.authService.loginStatus.value === LoginStates.loggedIn) {
       this.filterService.filteredEntries.subscribe((filteredEntries) => {
         this.entries = filteredEntries;
       });
     }
-    this.authService.loginStatus.subscribe((status) => {
+    this._authSub = this.authService.loginStatus.subscribe((status) => {
       if (status !== LoginStates.loggedIn) {
         this.router.navigate(['login']);
       }
     });
+  }
+  ngOnDestroy(): void {
+    this._authSub?.unsubscribe();
   }
 
   copyEntries(): void {
@@ -70,5 +74,8 @@ export class MainComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+  onConfigClick() {
+    this.router.navigate(['/config']);
   }
 }

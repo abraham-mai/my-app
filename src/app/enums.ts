@@ -8,3 +8,9 @@ export enum MatSnackbarStyle {
   Error = 'error',
   Success = 'success',
 }
+
+export enum UserConfigCategories {
+  implementation = 'implementierung',
+  test = 'test',
+  organizing = 'planung',
+}

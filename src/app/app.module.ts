@@ -15,12 +15,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CalendarBarComponent } from './components/main/calendar-bar/calendar-bar.component';
 import { RefetchComponent } from './components/main/refetch/refetch.component';
 import { ConfigComponent } from './components/config/config.component';
+import { RouterModule } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, LoginComponent, CalendarBarComponent, RefetchComponent, ConfigComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     HttpClientModule,
     FormsModule,
     MatInputModule,
@@ -28,6 +31,7 @@ import { ConfigComponent } from './components/config/config.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatSelectModule,
   ],
   providers: [
     {
