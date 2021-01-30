@@ -71,4 +71,7 @@ export class MainComponent implements OnInit {
   logout(): void {
     this.authService.logout();
   }
+  onConfigClick() {
+    this.router.navigate(['/config']);
+  }
 }

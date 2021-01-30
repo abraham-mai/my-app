@@ -1,3 +1,5 @@
+import { UserConfigCategories } from './enums';
+
 // Auth
 export interface GetAccessTokenRequest {
   apiKey: string;
@@ -49,4 +51,18 @@ export interface Note {
 export interface Credentials {
   username: string;
   password: string;
+}
+export interface GetUserConfigResponse {
+  userConfig: UserConfig[];
+}
+
+export interface UserConfig {
+  activityConfig: ActivityConfig;
+}
+
+export interface ActivityConfig {
+  id: string;
+  category: UserConfigCategories;
+  defaultIssue: string;
+  defaultComment: null | string;
 }
