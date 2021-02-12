@@ -1,11 +1,13 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { QueryService } from './services/query.service';
 import { ContentService } from './services/content.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatSnackBarMessage, SnackbarService } from './services/snackbar.service';
 import { LoginStates, MatSnackbarStyle } from './enums';
+import { UserService } from './services/user.service';
+import { FilteringsService } from './services/filterings.service';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +15,17 @@ import { LoginStates, MatSnackbarStyle } from './enums';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'my-app';
-  private authSub: Subscription | undefined;
+  title = 'Jet Simplifier';
+  private _authSub: Subscription = new Subscription();
+  private _refetchSub: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
     private queryService: QueryService,
-    private contentService: ContentService,
+    private userService: UserService,
+    private filterService: FilteringsService,
     private snackBar: MatSnackBar,
+    private contentService: ContentService,
     private snackBarService: SnackbarService,
     private zone: NgZone
   ) {}
@@ -30,15 +35,29 @@ export class AppComponent implements OnInit, OnDestroy {
       this.openSnackBar(newMessage);
     });
 
-    this.authService.loginStatus.subscribe((loginState) => {
+    this._authSub = this.authService.loginStatus.subscribe((loginState) => {
       if (loginState === LoginStates.loggedIn) {
-        this.queryService.fetchData();
+        this.fetchData();
       }
+    });
+
+    this._refetchSub = this.contentService.refetch.subscribe(() => {
+      this.fetchData();
     });
   }
 
   ngOnDestroy(): void {
-    this.authSub?.unsubscribe();
+    this._authSub?.unsubscribe();
+  }
+
+  public fetchData(): void {
+    forkJoin({ activities: this.queryService.getActivities(), entries: this.queryService.getEntries() }).subscribe(
+      (content) => {
+        this.filterService.activities = content.activities;
+        this.filterService.entries = content.entries;
+        this.filterService.startFilterData();
+      }
+    );
   }
 
   openSnackBar(matMessage: MatSnackBarMessage): void {

@@ -5,6 +5,7 @@ import { LoginStates, MatSnackbarStyle } from '../../enums';
 import { Router } from '@angular/router';
 import { FilteringsService } from 'src/app/services/filterings.service';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 export interface JetDataArrayElement {
   date: Date;
@@ -27,23 +28,31 @@ export class MainComponent implements OnInit, OnDestroy {
   public chosenYear: number;
   public statusShown = false;
   public status = 'Copied Entries';
+  public userConfig = false;
 
   activityMap = new Map<string, string>();
   private _authSub: Subscription = new Subscription();
+  private _userCheckedSub: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
     private snackbarService: SnackbarService,
     private router: Router,
-    private filterService: FilteringsService
+    private filterService: FilteringsService,
+    private userService: UserService
   ) {
     this.chosenMonth = 0;
     this.chosenYear = 0;
   }
   ngOnInit(): void {
     if (this.authService.loginStatus.value === LoginStates.loggedIn) {
-      this.filterService.filteredEntries.subscribe((filteredEntries) => {
-        this.entries = filteredEntries;
+      this._userCheckedSub = this.userService.userChecked.subscribe((checked) => {
+        if (checked) {
+          this.userConfig = this.userService.userFound;
+          this.filterService.filteredEntries.subscribe((filteredEntries) => {
+            this.entries = filteredEntries;
+          });
+        }
       });
     }
     this._authSub = this.authService.loginStatus.subscribe((status) => {
@@ -72,8 +81,9 @@ export class MainComponent implements OnInit, OnDestroy {
     this.snackbarService.sendNewMessage('Copied to Clipboard', MatSnackbarStyle.Success);
   }
 
-  logout(): void {
+  onLogOutClick(): void {
     this.authService.logout();
+    this.userService.resetUser();
   }
   onConfigClick() {
     this.router.navigate(['/config']);

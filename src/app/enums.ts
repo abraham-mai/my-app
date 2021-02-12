@@ -13,4 +13,5 @@ export enum UserConfigCategories {
   implementation = 'implementierung',
   test = 'test',
   organizing = 'planung',
+  other = 'sonstiges',
 }

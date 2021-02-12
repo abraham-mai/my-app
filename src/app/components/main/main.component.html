@@ -7,16 +7,23 @@
       Jet Simplifier
     </div>
     <div class="top-field d-flex justify-content-end align-items-start">
-      <button mat-raised-button color="primary" (click)="logout()">Log Out</button>
+      <button mat-raised-button color="primary" (click)="onLogOutClick()">Log Out</button>
     </div>
   </div>
-  <div class="mb-4">
-    <calendar-bar></calendar-bar>
-    <div class="d-flex justify-content-center mt-4">
-      <refetch></refetch>
+  <ng-container *ngIf="userConfig; else noConfig">
+    <div class="mb-4">
+      <calendar-bar></calendar-bar>
+      <div class="d-flex justify-content-center mt-4">
+        <refetch></refetch>
+      </div>
     </div>
-  </div>
-  <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2 form-control entry-field">{{
-    this.entries || 'No entries'
-  }}</textarea>
+    <textarea (click)="copyEntries()" readonly class="w-50 h-50 p-2 form-control entry-field">{{
+      this.entries || 'No entries'
+    }}</textarea>
+  </ng-container>
+  <ng-template #noConfig
+    ><div class="mt-5" [style.color]="'white'">
+      <h1>In order to use this App, please create a new config in "Config" first.</h1>
+    </div></ng-template
+  >
 </div>

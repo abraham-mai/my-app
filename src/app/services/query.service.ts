@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import {
+  CreateUserConfigRequest,
   GetAccessTokenRequest,
   GetAccessTokenResponse,
   GetActivitiesResponse,
   GetEntriesResponse,
   GetUserConfigResponse,
+  UserConfigItem,
 } from '../domain';
 import { HttpClient } from '@angular/common/http';
 import { FilteringsService } from './filterings.service';
@@ -17,16 +19,11 @@ export class QueryService {
   private api = '/api/v3';
   private date = '2020-01-01T00:00:00.000/2030-12-31T23:59:59.999';
 
-  constructor(private http: HttpClient, private filterService: FilteringsService) {}
+  private userApi = 'http://localhost:3000';
 
-  public fetchData(): void {
-    forkJoin({ activities: this.getActivities(), entries: this.getEntries() }).subscribe((content) => {
-      this.filterService.activities = content.activities;
-      this.filterService.entries = content.entries;
-      this.filterService.startFilterData();
-    });
-  }
+  constructor(private http: HttpClient) {}
 
+  // GET
   public getAccessToken(credentialsInput: GetAccessTokenRequest): Observable<GetAccessTokenResponse> {
     return this.http.post<GetAccessTokenResponse>(`${this.baseUrl}${this.api}/developer/sign-in`, credentialsInput);
   }
@@ -39,7 +36,21 @@ export class QueryService {
     return this.http.get<GetEntriesResponse>(`${this.baseUrl}${this.api}/time-entries/${this.date}`);
   }
 
-  public getUserConfig(): Observable<GetUserConfigResponse> {
-    return this.http.get<GetUserConfigResponse>(`../../assets/userConfig.json`);
+  public getUserById(userId: number): Observable<GetUserConfigResponse> {
+    return this.http.get<GetUserConfigResponse>(`${this.userApi}/users/${userId}`);
+  }
+
+  public getUsers(): Observable<GetUserConfigResponse[]> {
+    return this.http.get<GetUserConfigResponse[]>(`${this.userApi}/users`);
+  }
+
+  // POST
+  public createUser(userData: CreateUserConfigRequest): Observable<GetUserConfigResponse> {
+    return this.http.post<GetUserConfigResponse>(`${this.userApi}/users/`, userData);
+  }
+
+  // PUT
+  public putUser(userId: number, userData: UserConfigItem[]): Observable<GetUserConfigResponse> {
+    return this.http.put<GetUserConfigResponse>(`${this.userApi}/users/${userId}/config`, userData);
   }
 }

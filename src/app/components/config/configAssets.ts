@@ -1,7 +1,7 @@
 import { UserConfigCategories } from 'src/app/enums';
 
 export interface DefaultValues {
-  category: UserConfigCategories;
+  category: string;
   defaultIssue: string;
   defaultComment: string | null;
 }
@@ -14,4 +14,5 @@ export const categoryDropdownData: DropdownData[] = [
   { label: 'Implementation', value: UserConfigCategories.implementation },
   { label: 'Testing', value: UserConfigCategories.test },
   { label: 'Organizing', value: UserConfigCategories.organizing },
+  { label: 'Other', value: UserConfigCategories.other },
 ];

@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DateObject } from '../components/main/calendar-bar/calendar-bar.component';
 import { JetDataArrayElement } from '../components/main/main.component';
 import { GetActivitiesResponse, GetEntriesResponse } from '../domain';
+import { UserConfigCategories } from '../enums';
 import { MappingsService } from './mappings.service';
 
 @Injectable({
@@ -45,21 +46,27 @@ export class FilteringsService {
       // @ts-ignore
       const duration = (end - start) / (1000 * 3600);
       const hours = duration.toString();
-      const activity = this.activityMap.get(filteredEntry.activityId);
+      const activityId = filteredEntry.activityId;
+      const activityName = this.activityMap.get(activityId);
       const date = start;
       return {
         date,
         text: filteredEntry.note.text?.toLowerCase().includes('vss')
           ? filteredEntry.note.text?.toLowerCase()
-          : this.mappingService.getText(activity),
-        category: this.mappingService.getCategory(activity),
+          : this.mappingService.getCategory(activityId) === UserConfigCategories.other
+          ? UserConfigCategories.other
+          : this.mappingService.getText(activityId),
+        category:
+          this.mappingService.getCategory(activityId) === UserConfigCategories.other
+            ? this.mappingService.getText(activityId)
+            : this.mappingService.getCategory(activityId),
         duration: hours,
         note:
-          this.mappingService.getNote(activity) ||
+          this.mappingService.getNote(activityId) ||
           `//${filteredEntry.note.text?.toLowerCase()}` ||
-          `//${this.mappingService.getText(activity)}`,
-        id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activity),
-        activity,
+          `//${this.mappingService.getText(activityId)}`,
+        id: date.toString() + (filteredEntry.note.text?.toLowerCase() || activityName),
+        activityName,
       };
     });
   }

@@ -1,41 +1,50 @@
 <div class="d-flex flex-column w-100 h-100 p-4 align-items-center">
   <div class="d-flex w-100 justify-content-between" style="height: 6rem">
     <div class="top-field d-flex justify-content-start align-items-start">
-      <button mat-raised-button color="secondary" (click)="onBackClick()">Back</button>
+      <button mat-raised-button color="secondary" [disabled]="newConfig" (click)="onBackClick()">Back</button>
     </div>
     <div class="top-field d-flex justify-content-end align-items-start">
       <button mat-raised-button color="primary" (click)="onLogOutClick()">Log Out</button>
     </div>
   </div>
-  <div *ngIf="activities && formGroup" class="login-card" style="min-height: 0">
-    <div class="d-flex justify-content-start"><h1>Configuration</h1></div>
+  <div *ngIf="activities && activityFormGroupItems.length > 0" class="login-card" style="min-height: 0">
+    <div class="d-flex justify-content-start">
+      <h1>{{ newConfig ? 'Create New' : '' }} Configuration</h1>
+    </div>
     <div class="d-flex" style="height: 60vh">
-      <form [formGroup]="formGroup" style="white-space: nowrap; overflow-x: scroll; height: 55vh">
-        <div *ngFor="let activity of activities" class="d-flex flex-column align-items-start mb-4">
-          <div class="mr-3 mb-2">{{ activity.name }}</div>
-          <div class="d-flex flex-wrap justify-content-center">
-            <mat-form-field class="mr-4" appearance="fill">
-              <mat-label>Category</mat-label>
-              <mat-select formControlName="{{ activity.id }}-category">
-                <mat-option *ngFor="let element of categoryDropdownData" [value]="element.value">
-                  {{ element.label }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="mr-4" appearance="fill">
-              <mat-label>Default Issue</mat-label>
-              <input formControlName="{{ activity.id }}-issue" matInput placeholder="Default issue" />
-            </mat-form-field>
-            <mat-form-field class="mr-4" appearance="fill">
-              <mat-label>Default Comment</mat-label>
-              <input formControlName="{{ activity.id }}-comment" matInput placeholder="Default issue" />
-            </mat-form-field>
+      <div style="white-space: nowrap; overflow-x: scroll; height: 55vh">
+        <form
+          *ngFor="let activityFormGroup of activityFormGroupItems; index as i"
+          [formGroup]="activityFormGroup.formGroup"
+        >
+          <div class="d-flex flex-column align-items-start mb-4">
+            <div class="mr-3 mb-2">{{ activities[i].name }}</div>
+            <div class="d-flex flex-wrap justify-content-center">
+              <mat-form-field class="mr-4" appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let element of categoryDropdownData" [value]="element.value">
+                    {{ element.label }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="mr-4" appearance="fill">
+                <mat-label>Default Issue</mat-label>
+                <input formControlName="issue" matInput placeholder="Default issue" />
+              </mat-form-field>
+              <mat-form-field class="mr-4" appearance="fill">
+                <mat-label>Default Comment</mat-label>
+                <input formControlName="comment" matInput placeholder="Default issue" />
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
     <div class="d-flex justify-content-center align-items-start">
-      <button mat-raised-button color="primary" (click)="onSaveClick()">Save Changes</button>
+      <button mat-raised-button color="primary" (click)="onSaveClick()">
+        {{ newConfig ? 'Create config' : 'Save Changes' }}
+      </button>
     </div>
   </div>
 </div>
