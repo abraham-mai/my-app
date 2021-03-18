@@ -19,7 +19,7 @@ export class QueryService {
   private api = '/api/v3';
   private date = '2020-01-01T00:00:00.000/2030-12-31T23:59:59.999';
 
-  private userApi = 'http://localhost:3000';
+  private userApi = 'http://ec2-52-212-173-130.eu-west-1.compute.amazonaws.com:3000';
 
   constructor(private http: HttpClient) {}
 
